@@ -17,6 +17,7 @@ function ChatInput({ channelName, channelId, chatRef }) {
     if (!channelId) {
       return false;
     }
+
     db.collection("rooms").doc(channelId).collection("messages").add({
       message: input,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -24,9 +25,9 @@ function ChatInput({ channelName, channelId, chatRef }) {
       userImage: user.photoURL,
     });
 
-    chatRef?.current?.scrollIntoView({
-      behavior: "smooth",
-    });
+    // chatRef?.current?.scrollIntoView({
+    //   behavior: "smooth",
+    // });
 
     setInput("");
   };
