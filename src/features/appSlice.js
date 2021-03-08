@@ -3,23 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 export const appSlice = createSlice({
   name: "app",
   initialState: {
-    value: 0,
+    roomId: null,
   },
   reducers: {
-    increment: state => {
-      state.value += 1;
-    },
-    decrement: state => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    enterRoom: (state, action) => {
+      state.roomId = action.payload.roomId;
     },
   },
 });
 
-export const { increment, decrement, incrementByAmount } = appSlice.actions;
-
-export const selectCount = state => state.counter.value;
-
+export const { enterRoom } = appSlice.actions;
+export const selectRoomId = state => state.app.roomId;
 export default appSlice.reducer;

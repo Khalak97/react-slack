@@ -15,7 +15,7 @@ function Header() {
       </HeaderLeft>
       <HeaderSearch>
         <SearchIcon />
-        <input placeholder={`Search `} />
+        <input placeholder={`Search`} />
       </HeaderSearch>
       <HeaderRight>
         <HelpOutlineIcon />
