@@ -28,10 +28,10 @@ function Sidebar() {
     <SidebarContainer>
       <SidebarHeader>
         <SidebarInfo>
-          <h2>Channel name</h2>
+          <h2>Room name</h2>
           <h3>
             <FiberManualRecordIcon />
-            User Name
+            {user.displayName}
           </h3>
         </SidebarInfo>
         <CreateIcon />

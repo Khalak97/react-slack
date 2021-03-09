@@ -1,5 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+
+import { useDocument } from "react-firebase-hooks/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { selectRoomId } from "../features/appSlice";
+import { auth, db } from "../firebase";
 
 import { Avatar } from "@material-ui/core";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
@@ -7,15 +13,29 @@ import SearchIcon from "@material-ui/icons/Search";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 
 function Header() {
+  const [user] = useAuthState(auth);
+  const roomId = useSelector(selectRoomId);
+  const [roomDetails] = useDocument(
+    roomId && db.collection("rooms").doc(roomId)
+  );
+
   return (
     <HeaderContainer>
       <HeaderLeft>
-        <HeaderAvatar />
+        <HeaderAvatar
+          src={user?.photoURL}
+          alt={user?.displayName}
+          onClick={() => auth.signOut()}
+        />
         <AccessTimeIcon />
       </HeaderLeft>
       <HeaderSearch>
         <SearchIcon />
-        <input placeholder={`Search`} />
+        <input
+          placeholder={`Search ${
+            roomId && roomDetails ? roomDetails?.data().name : "channel"
+          }`}
+        />
       </HeaderSearch>
       <HeaderRight>
         <HelpOutlineIcon />

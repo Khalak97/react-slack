@@ -19,9 +19,7 @@ function Login() {
           src="https://assets.brandfolder.com/pl546j-7le8zk-btwjnu/v/2925183/view@2x.png?v=1610642000/"
           alt="logo"
         />
-        <h1>Sign in</h1>
-        <p>Slack.com</p>
-
+        <h1>Welcome!</h1>
         <Button onClick={signIn}>Sign in with Google</Button>
       </LoginInnerContainer>
     </LoginContainer>
