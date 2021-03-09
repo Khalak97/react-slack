@@ -14,13 +14,13 @@ import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 
 function Chat() {
+  const chatRef = useRef(null);
+
   const roomId = useSelector(selectRoomId);
 
   const [roomDetails] = useDocument(
     roomId && db.collection("rooms").doc(roomId)
   );
-
-  const chatRef = useRef(null);
 
   const [roomMessages, loading] = useCollection(
     roomId &&
@@ -69,13 +69,13 @@ function Chat() {
                 />
               );
             })}
-            <ChatBottom />
+            <ChatBottom ref={chatRef} />
           </ChatMessages>
 
           <ChatInput
+            chatRef={chatRef}
             channelName={roomDetails?.data().name}
             channelId={roomId}
-            chatRef={chatRef}
           />
         </>
       )}
